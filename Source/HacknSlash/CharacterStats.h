@@ -3,24 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MyEnums.h"
 //#include "GameFramework/PlayerState.h"
 #include "CharacterStats.generated.h"
 
-/*
-  Moved to character vitals
- 
-UENUM(BlueprintType)		//"BlueprintType" is essential to include
-enum class EVitalNames : uint8
-{
-	VN_HP		UMETA(DisplayName = "Health"),
-	VN_Stamina 	UMETA(DisplayName = "Stamina"),
-	VN_Morale	UMETA(DisplayName = "Morale")
-	//NumberOfItems
-};
 
 USTRUCT(BlueprintType)
 //USTRUCT()
-struct FVital
+struct FVitals
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -53,12 +43,14 @@ struct FVital
 };
 
 UCLASS(config = Game)
-class HACKNSLASH_API FCharacterStats {
+class HACKNSLASH_API UCharacterStats: public UObject {
+	GENERATED_BODY()
+
 private:
 	bool bStat = true;
-};
-//	GENERATED_BODY()
-	
+
+
+	/*
 public:
 
 	//** Verification functions 
@@ -87,5 +79,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		float GetCurrentPercent(TArray <FVital> MyVitals, const EVitalNames vitalName);
+	*/
 };
-*/
+
