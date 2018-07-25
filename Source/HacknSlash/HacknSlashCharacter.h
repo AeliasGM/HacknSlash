@@ -11,29 +11,6 @@
 
 
 
-//TODO Vitals as a separate class
-USTRUCT(BlueprintType)
-struct FVital
-{
-	GENERATED_USTRUCT_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats)
-		EVitalNames StatName;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-		float MaxValue;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-		float CurentValue;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-		float RegenRate;
-
-
-	FVital() {
-		StatName = EVitalNames::VN_HP;
-		MaxValue = 100.f;
-		CurentValue = 100.f;
-		RegenRate = 1.f;
-	};
-};
 
 //TODO base character class with no camera
 UCLASS(config=Game)
@@ -48,6 +25,11 @@ class AHacknSlashCharacter : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Vitals, meta = (AllowPrivateAccess = "true"))
+		class UCharacterStats* myVitals;
+
+
 public:
 	AHacknSlashCharacter();
 
@@ -59,43 +41,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 	/** Character Stats and Vitals */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-		TArray <FVital> Vitals;
-
-public:
-
-	//** Verification functions
-	UFUNCTION(BlueprintCallable, Category = "Stats")
-		int32 GetStatInArray( const EVitalNames vitalName);
-	//TODO add check if character has vitals instantiated
-	//	UFUNCTION(BlueprintCallable, Category = "Stats")
-	//	bool CheckVitals(const TArray <UVitals>  myVitals);
-
-	//** Vital Setters
-	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void SetMaxValue( const EVitalNames vitalName, const float maxValue);
-
-	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void SetCurrentValue( const EVitalNames vitalName, const float currentValue);
-
-	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void SetRecoveryRate(const EVitalNames vitalName, const float recoveryRate);
-
-	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void StatModifyCurrent( const EVitalNames vitalName, const float AddAmount);
-
-	UFUNCTION(BlueprintCallable, Category = "Stats")
-		ECharacterStates GetMyCurrentState(const EVitalNames vitalName, const float currentValue);
-
-	//** Vital Getters
-	UFUNCTION(BlueprintCallable, Category = "Stats")
-		float GetMaxValue( const EVitalNames vitalName);
-
-	UFUNCTION(BlueprintCallable, Category = "Stats")
-		float GetCurrentValue( const EVitalNames vitalName);
-
-	UFUNCTION(BlueprintCallable, Category = "Stats")
-		float GetCurrentPercent( const EVitalNames vitalName);
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	//	TArray <FVital> Vitals;
 
 
 protected:

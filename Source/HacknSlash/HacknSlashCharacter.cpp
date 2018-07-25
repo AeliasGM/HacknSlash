@@ -127,86 +127,12 @@ void AHacknSlashCharacter::MoveRight(float Value)
 		// find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
-
+		
 		// get right vector 
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
 }
-	int32 AHacknSlashCharacter::GetStatInArray( const EVitalNames vitalName)//, int32& index) 
-	{
-		int32 index;
-
-		for (int32 i = 0; i <= Vitals.Num(); i++) {
-			if (vitalName == Vitals[i].StatName)
-			{
-				index = i;
-				break;
-			}
-		}
-		return index;
-	}
-	/**
-	bool UVitals::CheckVitals(const TArray <UVitals>  myVitals)
-	{
-
-	for (int i = 0; i < (int)EVitalNames::NumberOfItems; i++)
-	{
-	if (myVitals[i]::StatName = EVitalNames (i))
-	}
-
-	return true;
-	}
-	*/
-	//** Vital Setters
-	void AHacknSlashCharacter::SetMaxValue( const EVitalNames vitalName, const float maxValue)//, float&  maxValue)
-	{
-	//maxValue = 0.1f;
-		Vitals[GetStatInArray(vitalName)].MaxValue = maxValue;
-	}
-
-	void AHacknSlashCharacter::SetCurrentValue( const EVitalNames vitalName, const float currentValue)
-	{
-		Vitals[GetStatInArray(vitalName)].CurentValue = currentValue;
-	}
-	
-	void AHacknSlashCharacter::SetRecoveryRate(const EVitalNames vitalName, const float recoveryRate)
-	{
-		Vitals[GetStatInArray(vitalName)].RegenRate = recoveryRate;
-	}
-	//** Vital Getters
-	float AHacknSlashCharacter::GetMaxValue( const EVitalNames vitalName)//, float&  maxValue)
-	{
-	//maxValue = 0.1f;
-	return Vitals[GetStatInArray( vitalName)].MaxValue;
-	}
-
-	float AHacknSlashCharacter::GetCurrentValue( const EVitalNames vitalName)
-	{
-	return Vitals[GetStatInArray( vitalName)].CurentValue;
-	}
-
-	float AHacknSlashCharacter::GetCurrentPercent( const EVitalNames vitalName)
-	{
-	float result = Vitals[GetStatInArray(vitalName)].CurentValue / Vitals[GetStatInArray( vitalName)].MaxValue;
-	return result;
-	}
-
-	void AHacknSlashCharacter::StatModifyCurrent( const EVitalNames vitalName, const float AddAmount)
-	{
-	//compare to max value
-		
-		SetCurrentValue(vitalName, FMath::Clamp(Vitals[GetStatInArray(vitalName)].CurentValue + AddAmount, 0.0f, GetMaxValue(vitalName)));
-	}
-
-	ECharacterStates AHacknSlashCharacter::GetMyCurrentState(const EVitalNames vitalName, const float currentValue)
-	{
-		ECharacterStates myState = ECharacterStates::St_Eager;
-		if (GetCurrentPercent(EVitalNames::VN_HP) > 0.50f) {
-			//myState = St_Eager;
-		}
-		return myState;
-	}
 
 

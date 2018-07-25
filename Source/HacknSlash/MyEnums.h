@@ -18,8 +18,9 @@ enum class EVitalNames : uint8
 UENUM(BlueprintType)		//"BlueprintType" is essential to include
 enum class ECharacterStates : uint8
 {
-	St_Eager	UMETA(DisplayName = "Eager"),
-	St_Neutral	UMETA(DisplayName = "Neutral"),
-	St_Cautious	UMETA(DisplayName = "Cautious")
+	St_UnableToAttack	UMETA(DisplayName = "UnableToAttack"),
+	St_Eager			UMETA(DisplayName = "Eager"),
+	St_Neutral			UMETA(DisplayName = "Neutral"),
+	St_Cautious			UMETA(DisplayName = "Cautious")
 
 };
