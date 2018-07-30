@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/SphereComponent.h"
 #include "CharacterVitals.h"
 #include "CharacterStats.h"
 #include "MyEnums.h"
@@ -26,10 +27,14 @@ class AHacknSlashCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
 	
+	/** character stats */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Vitals, meta = (AllowPrivateAccess = "true"))
 		class UCharacterStats* myVitals;
 
-
+	/** sphere component */
+	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+		class USphereComponent* DangerSphere;
+	
 public:
 	AHacknSlashCharacter();
 
@@ -40,9 +45,6 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
-	/** Character Stats and Vitals */
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-	//	TArray <FVital> Vitals;
 
 
 protected:

@@ -51,13 +51,22 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		void RestorationTimerEnd();
 
+	//** Character Variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		TArray <FVital> Vitals;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		float AttackCost;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+		float BaseAttackDamage;
+
 	//TODO change character state to read only in BP
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		ECharacterStates CharacterState;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+		EFactions myFaction;
+
 
 
 	//** Verification functions

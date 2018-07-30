@@ -24,3 +24,11 @@ enum class ECharacterStates : uint8
 	St_Cautious			UMETA(DisplayName = "Cautious")
 
 };
+
+UENUM(BlueprintType)		//"BlueprintType" is essential to include
+enum class EFactions : uint8
+{
+	F_Good		UMETA(DisplayName = "Good"),
+	F_Bad		UMETA(DisplayName = "Bad")
+
+};
