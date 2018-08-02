@@ -46,13 +46,6 @@ AHacknSlashCharacter::AHacknSlashCharacter()
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
 	// Create a dangerSphere
-	DangerSphere = CreateDefaultSubobject<USphereComponent>(TEXT("DangerSphere"));
-//	USphereComponent* SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("RootComponent"));
-	DangerSphere->AttachTo(RootComponent);
-
-	DangerSphere->InitSphereRadius(500.0f);
-	DangerSphere->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
-
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }

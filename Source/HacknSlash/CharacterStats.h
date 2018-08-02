@@ -64,11 +64,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		ECharacterStates CharacterState;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-		EFactions myFaction;
-
-
-
 	//** Verification functions
 	UFUNCTION(BlueprintCallable, Category = "Stats")
 		int32 GetStatInArray(const EVitalNames vitalName) const;
@@ -87,7 +82,7 @@ public:
 		void SetRecoveryRate(const EVitalNames vitalName, const float recoveryRate);
 
 	UFUNCTION(BlueprintCallable, Category = "Stats")
-		void StatModifyCurrent(const EVitalNames vitalName, const float AddAmount);
+		void StatModifyCurrent(const EVitalNames vitalName, const float Multiplier, const float AddAmount);
 
 	//** Vital Getters
 	UFUNCTION(BlueprintCallable, Category = "Stats")

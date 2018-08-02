@@ -1,8 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "CharacterStats.h"
-//#include "Engine/World.h"
-
 
 UCharacterStats::UCharacterStats()
 {
@@ -31,17 +29,14 @@ void UCharacterStats::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 void UCharacterStats::RestorationTimerEnd()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Stats are updating"));
-	
 	// performm stats current value recovery
 	for (auto &Vital : Vitals) {
-		StatModifyCurrent(Vital.StatName, Vital.RegenRate);
+		StatModifyCurrent(Vital.StatName, 1, Vital.RegenRate);
 	}
 
 	//Update myCurrentState
  	CharacterState = UCharacterStats::GetMyCurrentState();	
-	//UE_LOG(LogTemp, Warning, TEXT("%s, state is"), *GetStateEnumAsString(ECharacterStates EnumValue));
-	
+
 	//Reset timer
 	GetWorld()->GetTimerManager().SetTimer(recoveryTimer, this, &UCharacterStats::RestorationTimerEnd, 1.f, false);
 
@@ -107,12 +102,15 @@ float UCharacterStats::GetCurrentPercent(const EVitalNames vitalName) const
 	return result;
 }
 
-void UCharacterStats::StatModifyCurrent(const EVitalNames vitalName, const float AddAmount)
+void UCharacterStats::StatModifyCurrent(const EVitalNames vitalName, const float Multiplier, const float AddAmount)
 {
-	UE_LOG(LogTemp, Warning, TEXT("attack"));
 	//compare to max value
 	if (CheckVitals(Vitals))
-	SetCurrentValue(vitalName, FMath::Clamp(Vitals[GetStatInArray(vitalName)].CurentValue + AddAmount, 0.0f, GetMaxValue(vitalName)));
+	SetCurrentValue(vitalName, 
+		FMath::Clamp(Vitals[GetStatInArray(vitalName)].CurentValue + 
+			AddAmount*Multiplier, 
+			0.0f, 
+			GetMaxValue(vitalName)));
 }
 
 ECharacterStates UCharacterStats::GetMyCurrentState() const
@@ -138,11 +136,3 @@ ECharacterStates UCharacterStats::GetMyCurrentState() const
 
 	return myState;
 }
-/*
-FString GetStateEnumAsString(ECharacterStates EnumValue)
-{
-	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("ECharacterStates"), true);
-	if (!EnumPtr) return FString("Invalid");
-
-	return EnumPtr->GetNameByValue((int64)EnumValue); 
-}*/

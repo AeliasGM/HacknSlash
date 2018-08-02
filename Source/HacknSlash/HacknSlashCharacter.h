@@ -4,9 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Components/SphereComponent.h"
-#include "CharacterVitals.h"
-#include "CharacterStats.h"
+//#include "CharacterStats.h"
 #include "MyEnums.h"
 #include "HacknSlashCharacter.generated.h"
 
@@ -14,6 +12,7 @@
 
 
 //TODO base character class with no camera
+//TODO remove CharacterVitals.h .cpp from code
 UCLASS(config=Game)
 class AHacknSlashCharacter : public ACharacter
 {
@@ -31,10 +30,6 @@ class AHacknSlashCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Vitals, meta = (AllowPrivateAccess = "true"))
 		class UCharacterStats* myVitals;
 
-	/** sphere component */
-	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-		class USphereComponent* DangerSphere;
-	
 public:
 	AHacknSlashCharacter();
 
