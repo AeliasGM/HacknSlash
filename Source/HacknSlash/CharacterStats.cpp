@@ -15,7 +15,7 @@ void UCharacterStats::BeginPlay()
 {
 	Super::BeginPlay();
 	//check if Vitals were initialized
-	if (!CheckVitals (Vitals))
+	if (!ensure(CheckVitals (Vitals)))
 		UE_LOG(LogTemp, Error, TEXT("%s has Uninitialized Stats"), *this->GetOwner ()->GetName ());
 
 	GetWorld()->GetTimerManager().SetTimer(recoveryTimer, this, &UCharacterStats::RestorationTimerEnd, 1.f, false);
@@ -33,14 +33,11 @@ void UCharacterStats::RestorationTimerEnd()
 	for (auto &Vital : Vitals) {
 		StatModifyCurrent(Vital.StatName, 1, Vital.RegenRate);
 	}
-
 	//Update myCurrentState
  	CharacterState = UCharacterStats::GetMyCurrentState();	
 
 	//Reset timer
 	GetWorld()->GetTimerManager().SetTimer(recoveryTimer, this, &UCharacterStats::RestorationTimerEnd, 1.f, false);
-
-
 }
 
 int32 UCharacterStats::GetStatInArray(const EVitalNames vitalName) const 

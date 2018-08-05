@@ -14,7 +14,7 @@ struct FVital
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		EVitalNames StatName;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		float MaxValue;

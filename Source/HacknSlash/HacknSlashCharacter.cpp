@@ -4,6 +4,7 @@
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/SphereComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
@@ -46,6 +47,12 @@ AHacknSlashCharacter::AHacknSlashCharacter()
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
 	// Create a dangerSphere
+
+	DangerSphere = CreateDefaultSubobject<USphereComponent>(TEXT("DangerSphere"));
+	DangerSphere->AttachTo(this->GetRootComponent(),NAME_None, EAttachLocation::SnapToTargetIncludingScale);
+	DangerSphere->InitSphereRadius(DangerSphereRadius);
+	DangerSphere->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }

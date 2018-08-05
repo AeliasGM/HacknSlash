@@ -8,38 +8,42 @@
 #include "MyEnums.h"
 #include "HacknSlashCharacter.generated.h"
 
-
-
-
 //TODO base character class with no camera
-//TODO remove CharacterVitals.h .cpp from code
 UCLASS(config=Game)
 class AHacknSlashCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 	/** Camera boom positioning the camera behind the character */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
 
 	/** Follow camera */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
 	
 	/** character stats */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Vitals, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Vitals", meta = (AllowPrivateAccess = "true"))
 		class UCharacterStats* myVitals;
 
 public:
 	AHacknSlashCharacter();
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
 	float BaseTurnRate;
 
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
 	float BaseLookUpRate;
+	
+	/** sphere component */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Tactical", meta = (AllowPrivateAccess = "true"))
+		class USphereComponent* DangerSphere;
+
+	UPROPERTY(Category = "Tactical", EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+		float DangerSphereRadius = 500.f;
+
 
 
 protected:
