@@ -49,7 +49,7 @@ AHacknSlashCharacter::AHacknSlashCharacter()
 	// Create a dangerSphere
 
 	DangerSphere = CreateDefaultSubobject<USphereComponent>(TEXT("DangerSphere"));
-	DangerSphere->AttachTo(this->GetRootComponent(),NAME_None, EAttachLocation::SnapToTargetIncludingScale);
+	DangerSphere->SetupAttachment (this->GetRootComponent(), NAME_None);
 	DangerSphere->InitSphereRadius(DangerSphereRadius);
 	DangerSphere->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
 
@@ -100,6 +100,25 @@ void AHacknSlashCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector L
 void AHacknSlashCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
 		StopJumping();
+}
+
+void AHacknSlashCharacter::Death()
+{
+	auto controllerRef = this->GetController ();
+
+	if (!ensure(controllerRef)) {
+		UE_LOG(LogTemp, Error, TEXT("no controller Found"));
+		return;
+	}
+	else 
+	{
+		UE_LOG(LogTemp, Error, TEXT("Destroying controller"));
+
+		controllerRef->UnPossess(); 
+	//	controllerRef->Destroy();
+		}
+	
+	//this->GetController->Destroy () ;
 }
 
 void AHacknSlashCharacter::TurnAtRate(float Rate)

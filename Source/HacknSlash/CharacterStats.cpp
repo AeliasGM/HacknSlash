@@ -104,10 +104,8 @@ void UCharacterStats::StatModifyCurrent(const EVitalNames vitalName, const float
 	//compare to max value
 	if (CheckVitals(Vitals))
 	SetCurrentValue(vitalName, 
-		FMath::Clamp(Vitals[GetStatInArray(vitalName)].CurentValue + 
-			AddAmount*Multiplier, 
-			0.0f, 
-			GetMaxValue(vitalName)));
+		FMath::Clamp(Vitals[GetStatInArray(vitalName)].CurentValue + AddAmount*Multiplier,
+			0.0f, Vitals[GetStatInArray(vitalName)].MaxValue));
 }
 
 ECharacterStates UCharacterStats::GetMyCurrentState() const
@@ -120,7 +118,7 @@ ECharacterStates UCharacterStats::GetMyCurrentState() const
 	float _lowPoint = 0.3f;
 	float _medPoint = 0.6f;
 
-	if (myStaRate<AttackCost) myState = ECharacterStates::St_UnableToAttack;
+	if (Vitals[GetStatInArray(EVitalNames::VN_Stamina)].CurentValue <AttackCost ) myState = ECharacterStates::St_UnableToAttack;
 	else if (myHpRate < _lowPoint && myStaRate < _lowPoint) myState = ECharacterStates::St_Cautious;
 	else if (myHpRate < _lowPoint && myStaRate < _medPoint) myState = ECharacterStates::St_Cautious;
 	else if (myHpRate < _lowPoint && myStaRate >= _medPoint) myState = ECharacterStates::St_Cautious;

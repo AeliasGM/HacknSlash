@@ -75,6 +75,10 @@ protected:
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
+	/** Death of a chahracter. Currently handled by a blueprint Death Event*/
+	UFUNCTION(BlueprintCallable, Category = "Stats")
+		void Death();
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
