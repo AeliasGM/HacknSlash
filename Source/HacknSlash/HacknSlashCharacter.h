@@ -14,17 +14,9 @@ class AHacknSlashCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-	/** Camera boom positioning the camera behind the character */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
-	class USpringArmComponent* CameraBoom;
-
-	/** Follow camera */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* FollowCamera;
-	
 	/** character stats */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Vitals", meta = (AllowPrivateAccess = "true"))
-		class UCharacterStats* myVitals;
+	class UCharacterStats* myVitals;
 
 public:
 	AHacknSlashCharacter();
@@ -39,12 +31,10 @@ public:
 	
 	/** sphere component */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Tactical", meta = (AllowPrivateAccess = "true"))
-		class USphereComponent* DangerSphere;
+	class USphereComponent* DangerSphere;
 
 	UPROPERTY(Category = "Tactical", EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-		float DangerSphereRadius = 500.f;
-
-
+	float DangerSphereRadius = 500.f;
 
 protected:
 
@@ -74,6 +64,7 @@ protected:
 
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
+	
 
 	/** Death of a chahracter. Currently handled by a blueprint Death Event*/
 	UFUNCTION(BlueprintCallable, Category = "Stats")
@@ -84,10 +75,23 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// End of APawn interface
 
+	/** 
 public:
+	 Camera boom positioning the camera behind the character
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
+class USpringArmComponent* CameraBoom;
+ */
+ /** Follow camera
+ UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
+ class UCameraComponent* FollowCamera;
+ */
+ /**Set up third person camera
+	UFUNCTION(BlueprintCallable, Category = "Camera")
+		void SetUpCamera();
+		*/
 	/** Returns CameraBoom subobject **/
-	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+//	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
-	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+//	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 };
 

@@ -8,6 +8,7 @@
 #include "TacticalComponent.generated.h"
 
 class AHacknSlashCharacter;
+class ASquad;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class HACKNSLASH_API UTacticalComponent : public UActorComponent
@@ -30,7 +31,13 @@ public:
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tactical")
 		EFactions myFaction;
-	//TODO change to Blueprint class Base Character
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tactical")
+		ASquad* mySquad;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tactical")
+		ESquadOrders myOrder;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tactical")
+		FIntVector mySquadPosition;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite , Category = "Tactical", meta = (AllowPrivateAccess = "true"))
 		TArray <AHacknSlashCharacter*> Enemies;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Tactical", meta = (AllowPrivateAccess = "true"))

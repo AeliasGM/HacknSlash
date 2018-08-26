@@ -54,6 +54,7 @@ protected:
 	//** Character Variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		TArray <FVital> Vitals;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 		float AttackCost;
 

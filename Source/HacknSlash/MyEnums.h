@@ -32,3 +32,21 @@ enum class EFactions : uint8
 	F_Bad		UMETA(DisplayName = "Bad")
 
 };
+
+UENUM(BlueprintType)		//"BlueprintType" is essential to include
+enum class ESquadOrders : uint8
+{
+	So_StandFormation	UMETA(DisplayName = "StandFormation"),
+	So_Attack			UMETA(DisplayName = "Attack"),
+	So_Move				UMETA(DisplayName = "Move"),
+	So_Defend			UMETA(DisplayName = "Defend"),
+	So_Retreat			UMETA(DisplayName = "Retreat")
+};
+
+//TODO add other formation types
+UENUM(BlueprintType)		//"BlueprintType" is essential to include
+enum class EFormationType : uint8
+{
+	Ft_Wide		UMETA(DisplayName = "Wide"),
+	Ft_Close	UMETA(DisplayName = "Close"),
+};
