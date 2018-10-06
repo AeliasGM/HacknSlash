@@ -33,7 +33,7 @@ void ASquad::Tick(float DeltaTime)
 		UE_LOG(LogTemp, Warning, TEXT("%s, has no leader"), *this->GetName())
 			return;
 	}
-	this->SetActorLocation(Leader->GetActorLocation (), false,nullptr,ETeleportType::None);
+	//this->SetActorLocation(Leader->GetActorLocation (), false,nullptr,ETeleportType::None);
 }
 
 // Called to bind functionality to input
