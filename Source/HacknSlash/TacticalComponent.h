@@ -38,6 +38,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tactical")
 		FIntVector mySquadPosition;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Tactical", meta = (AllowPrivateAccess = "true"))
+		TArray <AHacknSlashCharacter*> CharactersInRange;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite , Category = "Tactical", meta = (AllowPrivateAccess = "true"))
 		TArray <AHacknSlashCharacter*> Enemies;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Tactical", meta = (AllowPrivateAccess = "true"))
