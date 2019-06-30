@@ -1,3 +1,4 @@
+    
 # Visual Studio 2015 user specific files
 .vs/
 
@@ -78,3 +79,4 @@ Content/Character/Animations/
 Content/StarterContent/
 Content/Mannequin/
 Content/KiteDemo/
+Content/PolyHero/
